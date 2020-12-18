@@ -25,5 +25,5 @@ jobs:
           python3 -m pip install 'molecule[docker,lint]'
       - name: Test with molecule
         run: |
-          cd minecraft
+          ls
           molecule test
