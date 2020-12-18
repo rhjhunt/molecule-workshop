@@ -75,7 +75,7 @@
     remote_src: yes
     src: /opt/minecraft/build/mcrcon-code/mcrcon
     dest: /opt/minecraft/mcrcon
-    mode: 0755
+    mode: '0755'
     owner: minecraft
     group: minecraft
 
@@ -83,17 +83,20 @@
   template:
     src: minecraft.service.j2
     dest: /etc/systemd/system/minecraft.service
+    mode: '0644'
 
 - name: Populate minecraft server.properties
   template:
     src: server.properties.j2
     dest: /opt/minecraft/server/server.properties
+    mode: '0644'
 
 - name: Agree to the EULA
   copy:
     content: |
       eula=true
     dest: /opt/minecraft/server/eula.txt
+    mode: '0644'
 
 - name: Enable and start the minecraft service
   systemd:
