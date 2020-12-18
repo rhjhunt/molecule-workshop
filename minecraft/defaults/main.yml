@@ -1,0 +1,9 @@
+---
+rcon_port: 25576
+rcon_password: changeme
+
+force_gamemode: false
+gamemode: survival
+hardcore_mode: false
+max_players: 20
+motd: "A demo Minecraft server"
