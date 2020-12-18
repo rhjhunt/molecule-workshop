@@ -21,7 +21,8 @@ jobs:
         run: |
           sudo apt install docker
           python3 -m pip install --upgrade pip
-          python3 -m pip install -r requirements.txt
+          python3 -m pip install 'ansible<2.10'
+          python3 -m pip install 'molecule[docker,lint]'
       - name: Test with molecule
         run: |
           molecule test
