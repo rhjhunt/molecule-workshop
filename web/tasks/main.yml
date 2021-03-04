@@ -1,0 +1,20 @@
+---
+- name: install apache
+  dnf:
+    name: httpd
+    state: present
+
+- name: copy html
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+    owner: apache
+    group: apache
+    mode: '0644'
+
+- name: start httpd service
+  systemd:
+    name: httpd
+    enabled: yes
+    state: started
+    daemon_reload: yes

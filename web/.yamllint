@@ -1,8 +1,6 @@
 ---
 # Based on ansible-lint config
 extends: default
-ignore: |
-  venv/
 
 rules:
   braces:
