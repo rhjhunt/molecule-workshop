@@ -3,3 +3,4 @@ ansible-lint
 yamllint
 molecule
 molecule-docker
+molecule-podman
