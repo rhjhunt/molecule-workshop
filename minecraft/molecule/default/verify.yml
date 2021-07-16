@@ -1,0 +1,42 @@
+---
+- name: Verify
+  hosts: all
+  gather_facts: true
+
+- name: Verify
+  hosts: client
+  vars:
+    address: '{{ hostvars["minecraft-server"].ansible_default_ipv4.address }}'
+  tasks:
+
+    - name: Wait {{ wait_seconds }} seconds to confirm server is reachable
+      command: 'mcstatus {{ address }} status'
+      changed_when: false
+      retries: '{{ wait_seconds // 5 }}'
+      delay: 5
+      register: mcstatus_status_raw
+      until: not (mcstatus_status_raw is failed)
+
+    - name: load the mcstatus status json
+      set_fact:
+        mcstatus_status: '{{ mcstatus_status_raw.stdout | from_yaml }}'
+
+    - name: mcstatus status output
+      debug: var=mcstatus_status
+
+    - name: Query server
+      command: 'mcstatus {{ address }} query'
+      changed_when: false
+      register: mcstatus_query_raw
+
+    - name: load the mcstatus query json
+      set_fact:
+        mcstatus_query: '{{ mcstatus_query_raw.stdout | from_yaml }}'
+
+    - name: Assert motd is properly set and reported
+      assert:
+        that:
+        - mcstatus_query.motd == motd
+        - motd in mcstatus_status.description
+      vars:
+        motd: '{{ hostvars["minecraft-server"].motd }}'

@@ -1,0 +1,7 @@
+---
+package_deps:
+  - epel-release
+  - java-latest-openjdk
+  - rsync
+  - git
+  - gcc

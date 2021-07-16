@@ -1,0 +1,35 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: vagrant
+  provider:
+    name: libvirt
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+platforms:
+  - name: minecraft-server
+    box: generic/centos8
+    memory: 1024
+    cpus: 1
+    groups:
+      - server
+  - name: minecraft-client
+    box: generic/centos8
+    memory: 1024
+    cpus: 1
+    groups:
+      - client
+provisioner:
+  name: ansible
+  inventory:
+    group_vars:
+      server:
+        motd: 'Minecraft server deployed by Molecule'
+    host_vars:
+      minecraft-client:
+        wait_seconds: ${WAIT_SECONDS:-120}
+verifier:
+  name: ansible

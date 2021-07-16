@@ -4,3 +4,5 @@ yamllint
 molecule
 molecule-docker
 molecule-podman
+molecule-vagrant
+python-vagrant
