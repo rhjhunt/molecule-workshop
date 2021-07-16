@@ -1,6 +1,7 @@
 ---
 - name: Set up client
   hosts: client
+  become: true
   tasks:
 
     - name: Install mcstatus

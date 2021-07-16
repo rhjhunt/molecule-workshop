@@ -1,6 +1,7 @@
 ---
 - name: Converge
   hosts: server
+  become: true
   tasks:
     - name: "Include minecraft"
       include_role:
