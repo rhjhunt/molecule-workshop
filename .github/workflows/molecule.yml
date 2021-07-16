@@ -33,6 +33,5 @@ jobs:
           
       - name: Test with molecule
         run: |
-          cd molecule_workshop/web
-          ls
+          cd web
           molecule test
