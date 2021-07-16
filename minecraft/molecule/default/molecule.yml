@@ -12,7 +12,7 @@ lint: |
 platforms:
   - name: minecraft-server
     box: generic/centos8
-    memory: 1024
+    memory: 2048
     cpus: 1
     groups:
       - server
