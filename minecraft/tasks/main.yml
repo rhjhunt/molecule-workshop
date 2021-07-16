@@ -35,7 +35,8 @@
     method: GET
   register: version_manifest
 
-- debug:
+- name: Most recent release
+  debug:
     var: recent_release
     verbosity: 3
   vars:
@@ -49,7 +50,8 @@
     recent_release: '{{ (version_manifest.json.versions | selectattr("id", "equalto", version_manifest.json.latest.release) | list).0 }}'
   register: latest_version_manifest
 
-- debug:
+- name: Latest manifest version
+  debug:
     var: latest_version_manifest
     verbosity: 3
 
@@ -75,7 +77,7 @@
     remote_src: yes
     src: /opt/minecraft/build/mcrcon-code/mcrcon
     dest: /opt/minecraft/mcrcon
-    mode: 0755
+    mode: '0755'
     owner: minecraft
     group: minecraft
 
@@ -83,15 +85,18 @@
   template:
     src: minecraft.service.j2
     dest: /etc/systemd/system/minecraft.service
+    mode: '0644'
   notify: systemd_reload
 
 - name: Populate minecraft server.properties
   template:
     src: server.properties.j2
+    mode: '0644'
     dest: /opt/minecraft/server/server.properties
 
 - name: Agree to the EULA
   copy:
     content: |
       eula=true
+    mode: '0644'
     dest: /opt/minecraft/server/eula.txt
