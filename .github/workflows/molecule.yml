@@ -27,11 +27,11 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt install docker
+          sudo apt install podman
           python3 -m pip install --upgrade pip
           python3 -m pip install -r molecule_workshop/requirements.txt
           
       - name: Test with molecule
         run: |
           cd molecule_workshop/web
-          molecule test
+          molecule -s podman test
