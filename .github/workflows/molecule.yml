@@ -34,4 +34,4 @@ jobs:
       - name: Test with molecule
         run: |
           cd molecule_workshop/web
-          molecule -s podman test
+          molecule test -s podman
