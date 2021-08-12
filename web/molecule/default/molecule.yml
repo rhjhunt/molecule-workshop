@@ -2,10 +2,10 @@
 dependency:
   name: galaxy
 driver:
-  name: docker
+  name: podman
 lint: |
+  set -e
   yamllint .
-  ansible-lint
 platforms:
   - name: instance
     image: centos:8
