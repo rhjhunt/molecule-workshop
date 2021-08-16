@@ -33,5 +33,5 @@ jobs:
       - name: Test with molecule
         run: |
           cd molecule_workshop/web
-          export XDG_RUNTIME=/run/user/$(id -u)
+          echo 'export XDG_RUNTIME=/run/user/$(id -u)' >> ~/.bashrc
           molecule test
