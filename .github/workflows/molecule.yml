@@ -33,4 +33,5 @@ jobs:
       - name: Test with molecule
         run: |
           cd molecule_workshop/web
+          export XDG_RUNTIME=/run/user/$(id -u)
           molecule test
