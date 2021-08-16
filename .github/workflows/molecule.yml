@@ -27,7 +27,6 @@ jobs:
 
       - name: Install dependencies
         run: |
-          sudo apt install podman
           python3 -m pip install --upgrade pip
           python3 -m pip install -r molecule_workshop/requirements.txt
           
