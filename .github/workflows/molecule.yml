@@ -34,4 +34,4 @@ jobs:
         run: |
           cd molecule_workshop/web
           echo 'export XDG_RUNTIME=/run/user/$(id -u)' >> ~/.bashrc
-          molecule test
+          molecule test -s docker
