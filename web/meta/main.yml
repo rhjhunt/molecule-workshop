@@ -2,6 +2,9 @@ galaxy_info:
   author: Molecule Tester
   description: Molecule Workshop
 
+  role_name: web
+  namespace: rhjhunt
+
   license: GPL-3.0-only
 
   min_ansible_version: 2.9
