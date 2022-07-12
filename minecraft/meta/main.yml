@@ -12,7 +12,7 @@ galaxy_info:
   platforms:
     - name: EL
       versions:
-        - 8
+        - all
 
 
   galaxy_tags:

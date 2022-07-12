@@ -1,8 +1,8 @@
-ansible<2.10
+ansible-core
 ansible-lint
 yamllint
+colorama
 molecule
-molecule-docker
 molecule-podman
 molecule-vagrant
 python-vagrant

@@ -1,17 +1,17 @@
 ---
 - name: Install dependencies
-  yum:
+  ansible.builtin.yum:
     name: "{{ package_deps }}"
     state: present
 
 - name: Create minecraft user
-  user:
+  ansible.builtin.user:
     name: minecraft
     home: /opt/minecraft
     system: yes
 
 - name: Create minecraft directories
-  file:
+  ansible.builtin.file:
     path: "/opt/{{ item }}"
     state: directory
     owner: minecraft
@@ -24,26 +24,26 @@
     - minecraft/server
 
 - name: Enable firewall rule
-  systemd:
+  ansible.builtin.systemd:
     name: firewalld
     enabled: false
     state: stopped
 
 - name: Get minecraft version manifest
-  uri:
+  ansible.builtin.uri:
     url: https://launchermeta.mojang.com/mc/game/version_manifest.json
     method: GET
   register: version_manifest
 
 - name: Most recent release
-  debug:
+  ansible.builtin.debug:
     var: recent_release
     verbosity: 3
   vars:
     recent_release: '{{ version_manifest.json.versions | selectattr("id", "eq", version_manifest.json.latest.release) | list }}'
 
 - name: Get most recent release to download
-  uri:
+  ansible.builtin.uri:
     url: '{{ recent_release.url }}'
     method: GET
   vars:
@@ -51,29 +51,30 @@
   register: latest_version_manifest
 
 - name: Latest manifest version
-  debug:
+  ansible.builtin.debug:
     var: latest_version_manifest
     verbosity: 3
 
 - name: Download latest Minecraft release
-  get_url:
+  ansible.builtin.get_url:
     url: '{{ latest_version_manifest.json.downloads.server.url }}'
     dest: /opt/minecraft/server/server.jar
+    mode: '0644'
 
 - name: Clone mcrcon repo
-  git:
+  ansible.builtin.git:
     repo: https://git.code.sf.net/p/mcrcon/code
     dest: /opt/minecraft/build/mcrcon-code
     version: master
 
 - name: Build mcrcon binary
-  command: gcc mcrcon.c -o mcrcon
+  ansible.builtin.command: gcc mcrcon.c -o mcrcon
   args:
     chdir: /opt/minecraft/build/mcrcon-code
     creates: /opt/minecraft/build/mcrcon-code/mcrcon
 
 - name: Copy mcrcon binary to proper location
-  copy:
+  ansible.builtin.copy:
     remote_src: yes
     src: /opt/minecraft/build/mcrcon-code/mcrcon
     dest: /opt/minecraft/mcrcon
@@ -82,20 +83,20 @@
     group: minecraft
 
 - name: Create minecraft systemd file
-  template:
+  ansible.builtin.template:
     src: minecraft.service.j2
     dest: /etc/systemd/system/minecraft.service
     mode: '0644'
   notify: systemd_reload
 
 - name: Populate minecraft server.properties
-  template:
+  ansible.builtin.template:
     src: server.properties.j2
     mode: '0644'
     dest: /opt/minecraft/server/server.properties
 
 - name: Agree to the EULA
-  copy:
+  ansible.builtin.copy:
     content: |
       eula=true
     mode: '0644'

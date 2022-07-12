@@ -10,13 +10,13 @@ lint: |
   yamllint .
   ansible-lint
 platforms:
-  - name: minecraft-server
+  - name: minecraft-server01
     box: generic/centos8
     memory: 2048
     cpus: 1
     groups:
       - server
-  - name: minecraft-client
+  - name: minecraft-client01
     box: generic/centos8
     memory: 1024
     cpus: 1

@@ -5,5 +5,5 @@
   tasks:
 
     - name: Install mcstatus
-      pip:
+      ansible.builtin.pip:
         name: mcstatus

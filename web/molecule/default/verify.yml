@@ -5,5 +5,5 @@
   tasks:
 
   - name: test that the website is up
-    uri:
+    ansible.builtin.uri:
       url: http://localhost

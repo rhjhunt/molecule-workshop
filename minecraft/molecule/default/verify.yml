@@ -10,7 +10,7 @@
   tasks:
 
     - name: Wait {{ wait_seconds }} seconds to confirm server is reachable
-      command: 'mcstatus {{ address }} status'
+      ansible.builtin.command: 'mcstatus {{ address }} status'
       changed_when: false
       retries: '{{ wait_seconds // 5 }}'
       delay: 5
@@ -18,23 +18,23 @@
       until: not (mcstatus_status_raw is failed)
 
     - name: load the mcstatus status json
-      set_fact:
+      ansible.builtin.set_fact:
         mcstatus_status: '{{ mcstatus_status_raw.stdout | from_yaml }}'
 
     - name: mcstatus status output
-      debug: var=mcstatus_status
+      ansible.builtin.debug: var=mcstatus_status
 
     - name: Query server
-      command: 'mcstatus {{ address }} query'
+      ansible.builtin.command: 'mcstatus {{ address }} query'
       changed_when: false
       register: mcstatus_query_raw
 
     - name: load the mcstatus query json
-      set_fact:
+      ansible.builtin.set_fact:
         mcstatus_query: '{{ mcstatus_query_raw.stdout | from_yaml }}'
 
     - name: Assert motd is properly set and reported
-      assert:
+      ansible.builtin.assert:
         that:
         - mcstatus_query.motd == motd
         - motd in mcstatus_status.description

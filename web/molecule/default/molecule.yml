@@ -6,9 +6,10 @@ driver:
 lint: |
   set -e
   yamllint .
+  ansible-lint
 platforms:
   - name: instance
-    image: centos:8
+    image: quay.io/centos/centos:stream8
     command: /sbin/init
     capabilities:
       - SYS_ADMIN
@@ -22,5 +23,12 @@ platforms:
       - 0.0.0.0:8080:80
 provisioner:
   name: ansible
+  config_options:
+    defaults:
+      system_warnings: false
+    ssh_connection:
+      pipelining: false
+    inventory:
+      host_pattern_mismatch: ignore
 verifier:
   name: ansible
