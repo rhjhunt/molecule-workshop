@@ -33,4 +33,4 @@ jobs:
       - name: Test with molecule
         run: |
           cd molecule_workshop/web
-          molecule test -s docker
+          molecule test
