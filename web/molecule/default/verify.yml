@@ -4,6 +4,6 @@
   gather_facts: false
   tasks:
 
-  - name: test that the website is up
+  - name: Test that the website is up
     ansible.builtin.uri:
       url: http://localhost

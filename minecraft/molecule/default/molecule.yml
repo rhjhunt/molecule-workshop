@@ -5,10 +5,7 @@ driver:
   name: vagrant
   provider:
     name: libvirt
-lint: |
-  set -e
-  yamllint .
-  ansible-lint
+lint: ansible-lint
 platforms:
   - name: minecraft-server01
     box: generic/centos8

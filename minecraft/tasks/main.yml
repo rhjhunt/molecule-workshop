@@ -87,7 +87,7 @@
     src: minecraft.service.j2
     dest: /etc/systemd/system/minecraft.service
     mode: '0644'
-  notify: systemd_reload
+  notify: Systemd_reload
 
 - name: Populate minecraft server.properties
   ansible.builtin.template:

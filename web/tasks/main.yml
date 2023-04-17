@@ -1,10 +1,10 @@
 ---
-- name: install apache
+- name: Install apache
   ansible.builtin.dnf:
     name: httpd
     state: present
 
-- name: copy html
+- name: Copy html file into place
   ansible.builtin.template:
     src: index.html.j2
     dest: /var/www/html/index.html
@@ -12,7 +12,7 @@
     group: apache
     mode: '0644'
 
-- name: start httpd service
+- name: Start httpd service
   ansible.builtin.systemd:
     name: httpd
     enabled: yes

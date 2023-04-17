@@ -1,6 +1,6 @@
 ---
-- name: systemd_reload
-  systemd:
+- name: Systemd_reload
+  ansible.builtin.systemd:
     name: minecraft
     state: started
     enabled: yes
