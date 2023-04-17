@@ -7,13 +7,13 @@ driver:
     name: libvirt
 lint: ansible-lint
 platforms:
-  - name: minecraft-server01
+  - name: minecraft-server
     box: generic/centos8
     memory: 2048
     cpus: 1
     groups:
       - server
-  - name: minecraft-client01
+  - name: minecraft-client
     box: generic/centos8
     memory: 1024
     cpus: 1

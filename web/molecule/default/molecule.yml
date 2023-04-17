@@ -5,7 +5,7 @@ driver:
   name: podman
 lint: ansible-lint
 platforms:
-  - name: instance
+  - name: pid001
     image: quay.io/centos/centos:stream8
     command: /sbin/init
     capabilities:
@@ -21,11 +21,7 @@ platforms:
 provisioner:
   name: ansible
   config_options:
-    defaults:
-      system_warnings: false
     ssh_connection:
       pipelining: false
-    inventory:
-      host_pattern_mismatch: ignore
 verifier:
   name: ansible

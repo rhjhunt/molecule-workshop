@@ -2,8 +2,8 @@
 
 ## Requirements
 
-Python >= 3.6
-Ansible >= 2.8
+Python >= 3.8
+Ansible >= 2.9.10
 
 ## Installing Molecule
 
@@ -15,8 +15,8 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-From the commands a virtual environment was created. Ansible was installed, as was
-`molecule` with the `podman` and `docker` drivers and the linting tools.
+From the commands a python virtual environment was created. Ansible was installed,
+as was `molecule` with the `podman` and `vagrant` drivers and the linting tools.
 
-Other drivers that can be used that include `molecule-vagrant` and `molecule-openstack`
-are a few examples.
+Other drivers that can be used that include `molecule-azure`, `molecule-docker`,
+`molecule-vmware`, and `molecule-ec2` are a few examples.
