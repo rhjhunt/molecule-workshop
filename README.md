@@ -26,7 +26,8 @@ pip install --upgrade setuptools pip
 pip install -r requirements.txt
 ```
 
-From the above steps a Python virtual environment now exists with `ansible-core`, `ansible-lint`, and `molecule` with
-the `podman` and `vagrant` drivers.
+From the above steps a Python virtual environment now exists with `ansible-core`,
+`ansible-lint`, and `molecule` with the `podman` and `vagrant` drivers.
 
-Other drivers include `molecule-azure`, `molecule-docker`, `molecule-vmware`, and `molecule-ec2` as examples.
+Other drivers include `molecule-azure`, `molecule-docker`, `molecule-vmware`, and
+`molecule-ec2` as examples.
