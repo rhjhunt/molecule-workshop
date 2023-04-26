@@ -6,6 +6,7 @@ driver:
 lint: ansible-lint
 platforms:
   - name: pid001
+    hostname: pid001
     image: quay.io/centos/centos:stream8
     command: /sbin/init
     capabilities:
