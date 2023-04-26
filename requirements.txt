@@ -3,6 +3,6 @@ ansible-lint
 yamllint
 colorama
 molecule
-molecule-podman
-molecule-vagrant
+molecule-plugins[podman]
+molecule-plugins[vagrant]
 python-vagrant
