@@ -1,4 +1,3 @@
-Role Name
-=========
+# Role Name
 
 Example setup of a minecraft server.

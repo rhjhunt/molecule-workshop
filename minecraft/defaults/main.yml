@@ -7,3 +7,4 @@ gamemode: survival
 hardcore_mode: false
 max_players: 20
 motd: "Minecraft Server"
+...

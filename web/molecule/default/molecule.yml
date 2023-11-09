@@ -26,3 +26,4 @@ provisioner:
       pipelining: false
 verifier:
   name: ansible
+...

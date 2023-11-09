@@ -30,3 +30,4 @@ provisioner:
         wait_seconds: ${WAIT_SECONDS:-120}
 verifier:
   name: ansible
+...

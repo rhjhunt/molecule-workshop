@@ -1,3 +1,4 @@
+---
 galaxy_info:
   author: Molecule Lab
   description: Ansible role to install minecraft
@@ -10,12 +11,12 @@ galaxy_info:
   min_ansible_version: '2.9.10'
 
   platforms:
-    - name: EL
+    - name: 'EL'
       versions:
         - all
 
-
   galaxy_tags:
     - minecraft
-   
+
 dependencies: []
+...

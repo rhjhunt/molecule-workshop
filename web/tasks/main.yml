@@ -15,6 +15,7 @@
 - name: Start httpd service
   ansible.builtin.systemd:
     name: httpd
-    enabled: yes
+    enabled: true
     state: started
-    daemon_reload: yes
+    daemon_reload: true
+...

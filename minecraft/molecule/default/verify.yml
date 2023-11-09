@@ -37,7 +37,8 @@
     - name: Assert motd is properly set and reported
       ansible.builtin.assert:
         that:
-        - mcstatus_query.motd == motd
-        - motd in mcstatus_status.description
+          - mcstatus_query.motd == motd
+          - motd in mcstatus_status.description
       vars:
         motd: '{{ hostvars["minecraft-server"].motd }}'
+...

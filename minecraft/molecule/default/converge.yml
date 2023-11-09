@@ -6,3 +6,4 @@
     - name: "Include minecraft"
       ansible.builtin.include_role:
         name: "minecraft"
+...

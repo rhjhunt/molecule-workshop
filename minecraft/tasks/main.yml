@@ -8,7 +8,7 @@
   ansible.builtin.user:
     name: minecraft
     home: /opt/minecraft
-    system: yes
+    system: true
 
 - name: Create minecraft directories
   ansible.builtin.file:
@@ -75,7 +75,7 @@
 
 - name: Copy mcrcon binary to proper location
   ansible.builtin.copy:
-    remote_src: yes
+    remote_src: true
     src: /opt/minecraft/build/mcrcon-code/mcrcon
     dest: /opt/minecraft/mcrcon
     mode: '0755'
@@ -101,3 +101,4 @@
       eula=true
     mode: '0644'
     dest: /opt/minecraft/server/eula.txt
+...
