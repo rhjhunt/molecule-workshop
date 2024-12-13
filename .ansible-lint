@@ -4,4 +4,3 @@ exclude_paths:
   - changelogs
 skip_list:
   - var-naming[no-role-prefix]
-...

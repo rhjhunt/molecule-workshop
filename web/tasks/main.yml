@@ -10,7 +10,7 @@
     dest: /var/www/html/index.html
     owner: apache
     group: apache
-    mode: '0644'
+    mode: "0644"
 
 - name: Start httpd service
   ansible.builtin.systemd:
@@ -18,4 +18,3 @@
     enabled: true
     state: started
     daemon_reload: true
-...

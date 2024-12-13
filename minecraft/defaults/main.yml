@@ -6,5 +6,4 @@ force_gamemode: false
 gamemode: survival
 hardcore_mode: false
 max_players: 20
-motd: "Minecraft Server"
-...
+motd: Minecraft Server

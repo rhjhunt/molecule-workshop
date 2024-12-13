@@ -18,7 +18,7 @@ platforms:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
     pre_build_image: true
     published_ports:
-      - 0.0.0.0:8080:80
+      - "0.0.0.0:8080:80"
 provisioner:
   name: ansible
   config_options:
@@ -26,4 +26,3 @@ provisioner:
       pipelining: false
 verifier:
   name: ansible
-...
