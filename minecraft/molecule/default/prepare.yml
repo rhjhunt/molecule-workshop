@@ -3,7 +3,6 @@
   hosts: client
   become: true
   tasks:
-
     - name: Install pip
       ansible.builtin.dnf:
         name: python3-pip
@@ -12,4 +11,3 @@
     - name: Install mcstatus
       ansible.builtin.pip:
         name: mcstatus
-...

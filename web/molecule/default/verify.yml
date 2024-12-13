@@ -3,8 +3,6 @@
   hosts: all
   gather_facts: false
   tasks:
-
     - name: Test that the website is up
       ansible.builtin.uri:
         url: http://localhost
-...

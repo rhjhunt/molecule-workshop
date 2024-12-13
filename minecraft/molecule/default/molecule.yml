@@ -24,10 +24,9 @@ provisioner:
   inventory:
     group_vars:
       server:
-        motd: 'Minecraft server deployed by Molecule'
+        motd: Minecraft server deployed by Molecule
     host_vars:
       minecraft-client:
         wait_seconds: ${WAIT_SECONDS:-120}
 verifier:
   name: ansible
-...

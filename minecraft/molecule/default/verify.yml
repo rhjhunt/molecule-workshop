@@ -8,31 +8,30 @@
   vars:
     address: '{{ hostvars["minecraft-server"].ansible_default_ipv4.address }}'
   tasks:
-
     - name: Wait to confirm server is reachable after {{ wait_seconds }}
-      ansible.builtin.command: 'mcstatus {{ address }} status'
+      ansible.builtin.command: mcstatus {{ address }} status
       changed_when: false
-      retries: '{{ wait_seconds // 5 }}'
+      retries: "{{ wait_seconds // 5 }}"
       delay: 5
       register: mcstatus_status_raw
       until: not (mcstatus_status_raw is failed)
 
     - name: Load the mcstatus status json
       ansible.builtin.set_fact:
-        mcstatus_status: '{{ mcstatus_status_raw.stdout | from_yaml }}'
+        mcstatus_status: "{{ mcstatus_status_raw.stdout | from_yaml }}"
 
     - name: The mcstatus status output
       ansible.builtin.debug:
         var: mcstatus_status
 
     - name: Query server
-      ansible.builtin.command: 'mcstatus {{ address }} query'
+      ansible.builtin.command: mcstatus {{ address }} query
       changed_when: false
       register: mcstatus_query_raw
 
     - name: Load the mcstatus query json
       ansible.builtin.set_fact:
-        mcstatus_query: '{{ mcstatus_query_raw.stdout | from_yaml }}'
+        mcstatus_query: "{{ mcstatus_query_raw.stdout | from_yaml }}"
 
     - name: Assert motd is properly set and reported
       ansible.builtin.assert:
@@ -41,4 +40,3 @@
           - motd in mcstatus_status.description
       vars:
         motd: '{{ hostvars["minecraft-server"].motd }}'
-...

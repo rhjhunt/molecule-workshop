@@ -3,7 +3,6 @@
   hosts: server
   become: true
   tasks:
-    - name: "Include minecraft"
+    - name: Include minecraft
       ansible.builtin.include_role:
-        name: "minecraft"
-...
+        name: minecraft

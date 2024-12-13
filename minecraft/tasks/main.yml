@@ -12,11 +12,11 @@
 
 - name: Create minecraft directories
   ansible.builtin.file:
-    path: "/opt/{{ item }}"
+    path: /opt/{{ item }}
     state: directory
     owner: minecraft
     group: minecraft
-    mode: '0755'
+    mode: "0755"
   with_items:
     - minecraft
     - minecraft/backup
@@ -44,7 +44,7 @@
 
 - name: Get most recent release to download
   ansible.builtin.uri:
-    url: '{{ recent_release.url }}'
+    url: "{{ recent_release.url }}"
     method: GET
   vars:
     recent_release: '{{ (version_manifest.json.versions | selectattr("id", "equalto", version_manifest.json.latest.release) | list).0 }}'
@@ -57,9 +57,9 @@
 
 - name: Download latest Minecraft release
   ansible.builtin.get_url:
-    url: '{{ latest_version_manifest.json.downloads.server.url }}'
+    url: "{{ latest_version_manifest.json.downloads.server.url }}"
     dest: /opt/minecraft/server/server.jar
-    mode: '0644'
+    mode: "0644"
 
 - name: Clone mcrcon repo
   ansible.builtin.git:
@@ -78,7 +78,7 @@
     remote_src: true
     src: /opt/minecraft/build/mcrcon-code/mcrcon
     dest: /opt/minecraft/mcrcon
-    mode: '0755'
+    mode: "0755"
     owner: minecraft
     group: minecraft
 
@@ -86,19 +86,18 @@
   ansible.builtin.template:
     src: minecraft.service.j2
     dest: /etc/systemd/system/minecraft.service
-    mode: '0644'
+    mode: "0644"
   notify: Systemd_reload
 
 - name: Populate minecraft server.properties
   ansible.builtin.template:
     src: server.properties.j2
-    mode: '0644'
+    mode: "0644"
     dest: /opt/minecraft/server/server.properties
 
 - name: Agree to the EULA
   ansible.builtin.copy:
     content: |
       eula=true
-    mode: '0644'
+    mode: "0644"
     dest: /opt/minecraft/server/eula.txt
-...
